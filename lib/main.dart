@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterassignment/address/address_screen.dart';
+import 'package:flutterassignment/constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+        primary: primaryColor,
+      )),
       home: const HomePage(title: 'Flutter Gigabank assignment'),
     );
   }
