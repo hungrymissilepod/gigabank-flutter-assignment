@@ -15,8 +15,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(
-        primary: primaryColor,
-      )),
+            primary: primaryColor,
+          ),
+          disabledColor: primaryColor.withOpacity(0.2),
+          textTheme: TextTheme(
+              bodyMedium: TextStyle(
+            fontSize: 18,
+          ))),
       home: const HomePage(title: 'Flutter Gigabank assignment'),
     );
   }
