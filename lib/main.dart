@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: primaryColor,
+            secondary: progressBarColor,
+            tertiary: textFieldUnderlineColor,
           ),
           disabledColor: primaryColor.withOpacity(0.2),
           textTheme: TextTheme(
