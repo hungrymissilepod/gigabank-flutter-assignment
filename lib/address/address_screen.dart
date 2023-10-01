@@ -16,22 +16,6 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen> {
-  final FocusNode _countryFocusNode = FocusNode();
-  final FocusNode _prefectureFocusNode = FocusNode();
-  final FocusNode _municipalityFocusNode = FocusNode();
-  final FocusNode _streetAddressFocusNode = FocusNode();
-  final FocusNode _apartmentFocusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _countryFocusNode.dispose();
-    _prefectureFocusNode.dispose();
-    _municipalityFocusNode.dispose();
-    _streetAddressFocusNode.dispose();
-    _apartmentFocusNode.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -66,7 +50,6 @@ class _AddressScreenState extends State<AddressScreen> {
                             child: Text(addressScreenBody),
                           ),
                           ValidatedFormField(
-                            focusNode: _countryFocusNode,
                             initialValue: state.country.value,
                             hintText: countryHint,
                             errorText: state.country.displayError != null ? 'Please enter a valid country' : null,
@@ -75,7 +58,6 @@ class _AddressScreenState extends State<AddressScreen> {
                             },
                           ),
                           ValidatedFormField(
-                            focusNode: _prefectureFocusNode,
                             initialValue: state.prefecture.value,
                             hintText: prefectureHint,
                             errorText: state.prefecture.displayError != null ? 'Please enter a valid prefecture' : null,
@@ -84,7 +66,6 @@ class _AddressScreenState extends State<AddressScreen> {
                             },
                           ),
                           ValidatedFormField(
-                            focusNode: _municipalityFocusNode,
                             initialValue: state.municipality.value,
                             hintText: municipalityHint,
                             errorText:
@@ -94,7 +75,6 @@ class _AddressScreenState extends State<AddressScreen> {
                             },
                           ),
                           ValidatedFormField(
-                            focusNode: _streetAddressFocusNode,
                             initialValue: state.streetAddress.value,
                             hintText: streetAddressHint,
                             errorText: state.streetAddress.displayError != null
@@ -105,7 +85,6 @@ class _AddressScreenState extends State<AddressScreen> {
                             },
                           ),
                           ValidatedFormField(
-                            focusNode: _apartmentFocusNode,
                             initialValue: state.apartment.value,
                             hintText: apartmentHint,
                             errorText:
