@@ -13,3 +13,6 @@ Things I would like to improve on:
 - Finish the `AddressValidatorService` so that we can actually validate that the address entered exists, and display this to the user.
 - Move the strings from `strings.dart` to a json file and load on app launch.
 - Add unit, widget, and bloc tests.
+
+Please note:
+I built this project using Flutter 3.10.6 and Dark 3.0.6.
