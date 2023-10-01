@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             tertiary: textFieldUnderlineColor,
           ),
           disabledColor: primaryColor.withOpacity(0.2),
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
               bodyMedium: TextStyle(
             fontSize: 18,
           ))),
@@ -39,6 +39,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   _navigateToAddAddressScreen() {
     Navigator.of(context).push(
       MaterialPageRoute(

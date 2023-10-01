@@ -96,9 +96,9 @@ class AddressFormBloc extends Bloc<AddressFormEvent, AddressFormState> {
       ),
     );
     if (state.isValid) {
-      emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-      await Future.delayed(Duration(seconds: 1));
       emit(state.copyWith(status: FormzSubmissionStatus.success));
+    } else {
+      emit(state.copyWith(status: FormzSubmissionStatus.failure));
     }
   }
 }
