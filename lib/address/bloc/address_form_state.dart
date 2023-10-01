@@ -5,6 +5,7 @@ final class AddressFormState extends Equatable {
     this.country = const Country.pure(),
     this.prefecture = const Prefecture.pure(),
     this.municipality = const Municipality.pure(),
+    this.streetAddress = const StreetAddress.pure(),
     this.isValid = false,
     this.status = FormzSubmissionStatus.initial,
   });
@@ -12,6 +13,7 @@ final class AddressFormState extends Equatable {
   final Country country;
   final Prefecture prefecture;
   final Municipality municipality;
+  final StreetAddress streetAddress;
   final bool isValid;
   final FormzSubmissionStatus status;
 
@@ -19,6 +21,7 @@ final class AddressFormState extends Equatable {
     Country? country,
     Prefecture? prefecture,
     Municipality? municipality,
+    StreetAddress? streetAddress,
     bool? isValid,
     bool? buttonEnabled,
     FormzSubmissionStatus? status,
@@ -27,11 +30,12 @@ final class AddressFormState extends Equatable {
       country: country ?? this.country,
       prefecture: prefecture ?? this.prefecture,
       municipality: municipality ?? this.municipality,
+      streetAddress: streetAddress ?? this.streetAddress,
       isValid: isValid ?? this.isValid,
       status: status ?? this.status,
     );
   }
 
   @override
-  List<Object> get props => [country, prefecture, municipality, status];
+  List<Object> get props => [country, prefecture, municipality, streetAddress, status];
 }

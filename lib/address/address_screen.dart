@@ -19,12 +19,14 @@ class _AddressScreenState extends State<AddressScreen> {
   final FocusNode _countryFocusNode = FocusNode();
   final FocusNode _prefectureFocusNode = FocusNode();
   final FocusNode _municipalityFocusNode = FocusNode();
+  final FocusNode _streetAddressFocusNode = FocusNode();
 
   @override
   void dispose() {
     _countryFocusNode.dispose();
     _prefectureFocusNode.dispose();
     _municipalityFocusNode.dispose();
+    _streetAddressFocusNode.dispose();
     super.dispose();
   }
 
@@ -75,7 +77,8 @@ class _AddressScreenState extends State<AddressScreen> {
                               focusNode: _prefectureFocusNode,
                               initialValue: state.prefecture.value,
                               hintText: prefectureHint,
-                              errorText: state.country.displayError != null ? 'Please enter a valid prefecture' : null,
+                              errorText:
+                                  state.prefecture.displayError != null ? 'Please enter a valid prefecture' : null,
                               onChanged: (value) {
                                 context.read<AddressFormBloc>().add(PrefectureChanged(prefecture: value));
                               },
@@ -90,10 +93,16 @@ class _AddressScreenState extends State<AddressScreen> {
                                 context.read<AddressFormBloc>().add(MunicipalityChanged(municipality: value));
                               },
                             ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                hintText: streetAddressHint,
-                              ),
+                            ValidatedFormField(
+                              focusNode: _streetAddressFocusNode,
+                              initialValue: state.streetAddress.value,
+                              hintText: streetAddressHint,
+                              errorText: state.streetAddress.displayError != null
+                                  ? 'Please enter a valid address in this format: subarea-block-house'
+                                  : null,
+                              onChanged: (value) {
+                                context.read<AddressFormBloc>().add(StreetAddressChanged(streetAddress: value));
+                              },
                             ),
                             TextFormField(
                               decoration: InputDecoration(
