@@ -20,6 +20,7 @@ class _AddressScreenState extends State<AddressScreen> {
   final FocusNode _prefectureFocusNode = FocusNode();
   final FocusNode _municipalityFocusNode = FocusNode();
   final FocusNode _streetAddressFocusNode = FocusNode();
+  final FocusNode _apartmentFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -27,6 +28,7 @@ class _AddressScreenState extends State<AddressScreen> {
     _prefectureFocusNode.dispose();
     _municipalityFocusNode.dispose();
     _streetAddressFocusNode.dispose();
+    _apartmentFocusNode.dispose();
     super.dispose();
   }
 
@@ -36,7 +38,7 @@ class _AddressScreenState extends State<AddressScreen> {
       create: (_) => AddressFormBloc(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(addressScreenTitle),
+          title: const Text(addressScreenTitle),
         ),
         body: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,76 +52,78 @@ class _AddressScreenState extends State<AddressScreen> {
             ),
             BlocBuilder<AddressFormBloc, AddressFormState>(
               builder: (context, state) {
-                return Container(
-                  child: Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 30),
-                              child: Text(addressScreenBody),
-                            ),
-                            ValidatedFormField(
-                              focusNode: _countryFocusNode,
-                              initialValue: state.country.value,
-                              hintText: countryHint,
-                              errorText: state.country.displayError != null ? 'Please enter a valid country' : null,
-                              onChanged: (value) {
-                                context.read<AddressFormBloc>().add(CountryChanged(country: value));
-                              },
-                            ),
-                            ValidatedFormField(
-                              focusNode: _prefectureFocusNode,
-                              initialValue: state.prefecture.value,
-                              hintText: prefectureHint,
-                              errorText:
-                                  state.prefecture.displayError != null ? 'Please enter a valid prefecture' : null,
-                              onChanged: (value) {
-                                context.read<AddressFormBloc>().add(PrefectureChanged(prefecture: value));
-                              },
-                            ),
-                            ValidatedFormField(
-                              focusNode: _municipalityFocusNode,
-                              initialValue: state.municipality.value,
-                              hintText: municipalityHint,
-                              errorText:
-                                  state.municipality.displayError != null ? 'Please enter a valid municipality' : null,
-                              onChanged: (value) {
-                                context.read<AddressFormBloc>().add(MunicipalityChanged(municipality: value));
-                              },
-                            ),
-                            ValidatedFormField(
-                              focusNode: _streetAddressFocusNode,
-                              initialValue: state.streetAddress.value,
-                              hintText: streetAddressHint,
-                              errorText: state.streetAddress.displayError != null
-                                  ? 'Please enter a valid address in this format: subarea-block-house'
-                                  : null,
-                              onChanged: (value) {
-                                context.read<AddressFormBloc>().add(StreetAddressChanged(streetAddress: value));
-                              },
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                hintText: apartmentHint,
-                              ),
-                            ),
-                          ],
-                        ),
+                return Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 30),
+                            child: Text(addressScreenBody),
+                          ),
+                          ValidatedFormField(
+                            focusNode: _countryFocusNode,
+                            initialValue: state.country.value,
+                            hintText: countryHint,
+                            errorText: state.country.displayError != null ? 'Please enter a valid country' : null,
+                            onChanged: (value) {
+                              context.read<AddressFormBloc>().add(CountryChanged(country: value));
+                            },
+                          ),
+                          ValidatedFormField(
+                            focusNode: _prefectureFocusNode,
+                            initialValue: state.prefecture.value,
+                            hintText: prefectureHint,
+                            errorText: state.prefecture.displayError != null ? 'Please enter a valid prefecture' : null,
+                            onChanged: (value) {
+                              context.read<AddressFormBloc>().add(PrefectureChanged(prefecture: value));
+                            },
+                          ),
+                          ValidatedFormField(
+                            focusNode: _municipalityFocusNode,
+                            initialValue: state.municipality.value,
+                            hintText: municipalityHint,
+                            errorText:
+                                state.municipality.displayError != null ? 'Please enter a valid municipality' : null,
+                            onChanged: (value) {
+                              context.read<AddressFormBloc>().add(MunicipalityChanged(municipality: value));
+                            },
+                          ),
+                          ValidatedFormField(
+                            focusNode: _streetAddressFocusNode,
+                            initialValue: state.streetAddress.value,
+                            hintText: streetAddressHint,
+                            errorText: state.streetAddress.displayError != null
+                                ? 'Please enter a valid address in this format: subarea-block-house'
+                                : null,
+                            onChanged: (value) {
+                              context.read<AddressFormBloc>().add(StreetAddressChanged(streetAddress: value));
+                            },
+                          ),
+                          ValidatedFormField(
+                            focusNode: _apartmentFocusNode,
+                            initialValue: state.apartment.value,
+                            hintText: apartmentHint,
+                            errorText:
+                                state.apartment.displayError != null ? 'Please enter a valid apartment number' : null,
+                            onChanged: (value) {
+                              context.read<AddressFormBloc>().add(ApartmentChanged(apartment: value));
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 );
               },
             ),
-            SafeArea(
+            const SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Button(),
               ),
             ),

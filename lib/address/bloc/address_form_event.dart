@@ -43,4 +43,13 @@ final class StreetAddressChanged extends AddressFormEvent {
   List<Object> get props => [streetAddress];
 }
 
+final class ApartmentChanged extends AddressFormEvent {
+  const ApartmentChanged({required this.apartment});
+
+  final String apartment;
+
+  @override
+  List<Object> get props => [apartment];
+}
+
 final class FormSubmitted extends AddressFormEvent {}
