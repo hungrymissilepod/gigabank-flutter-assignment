@@ -16,6 +16,13 @@ final class CountryChanged extends AddressFormEvent {
   List<Object> get props => [country];
 }
 
-final class CountryUnfocused extends AddressFormEvent {}
+final class PrefectureChanged extends AddressFormEvent {
+  const PrefectureChanged({required this.prefecture});
+
+  final String prefecture;
+
+  @override
+  List<Object> get props => [prefecture];
+}
 
 final class FormSubmitted extends AddressFormEvent {}
