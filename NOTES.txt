@@ -1,0 +1,15 @@
+📱 Gigabank flutter assignment - Jake King-Lee
+
+This is my submission for the the Gigabank tech task.
+
+I started this project by cloning the repo from Gitlab.
+I was originally thinking of using `stacked` for this project, my favourite Flutter state management package, however I decided that I would use `bloc` instead because it is relatively simple task.
+
+I tried to ensure that my UI matches as close to the screenshot as possible within the 4 hour timeframe.
+
+
+Things I would like to improve on:
+- Improve the UI on the `HomePage`
+- Finish the `AddressValidatorService` so that we can actually validate that the address entered exists, and display this to the user.
+- Move the strings from `strings.dart` to a json file and load on app launch.
+- Add unit, widget, and bloc tests.
