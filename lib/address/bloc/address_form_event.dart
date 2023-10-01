@@ -25,4 +25,13 @@ final class PrefectureChanged extends AddressFormEvent {
   List<Object> get props => [prefecture];
 }
 
+final class MunicipalityChanged extends AddressFormEvent {
+  const MunicipalityChanged({required this.municipality});
+
+  final String municipality;
+
+  @override
+  List<Object> get props => [municipality];
+}
+
 final class FormSubmitted extends AddressFormEvent {}

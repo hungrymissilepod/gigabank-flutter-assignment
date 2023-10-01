@@ -18,10 +18,13 @@ class AddressScreen extends StatefulWidget {
 class _AddressScreenState extends State<AddressScreen> {
   final FocusNode _countryFocusNode = FocusNode();
   final FocusNode _prefectureFocusNode = FocusNode();
+  final FocusNode _municipalityFocusNode = FocusNode();
 
   @override
   void dispose() {
     _countryFocusNode.dispose();
+    _prefectureFocusNode.dispose();
+    _municipalityFocusNode.dispose();
     super.dispose();
   }
 
@@ -77,10 +80,15 @@ class _AddressScreenState extends State<AddressScreen> {
                                 context.read<AddressFormBloc>().add(PrefectureChanged(prefecture: value));
                               },
                             ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                hintText: municipalityHint,
-                              ),
+                            ValidatedFormField(
+                              focusNode: _municipalityFocusNode,
+                              initialValue: state.municipality.value,
+                              hintText: municipalityHint,
+                              errorText:
+                                  state.municipality.displayError != null ? 'Please enter a valid municipality' : null,
+                              onChanged: (value) {
+                                context.read<AddressFormBloc>().add(MunicipalityChanged(municipality: value));
+                              },
                             ),
                             TextFormField(
                               decoration: InputDecoration(
