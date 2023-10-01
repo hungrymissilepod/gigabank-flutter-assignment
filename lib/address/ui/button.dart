@@ -10,6 +10,8 @@ class Button extends StatelessWidget {
     return BlocBuilder<AddressFormBloc, AddressFormState>(
       builder: (context, state) {
         return TextButton(
+          /// TODO: what is the correct logic for enabling/disabling this button?
+          /// I have settled on enabling it if a [Country] has been entered
           onPressed: state.country.value.isEmpty
               ? null
               : () {
