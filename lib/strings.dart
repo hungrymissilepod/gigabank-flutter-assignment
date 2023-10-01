@@ -1,5 +1,5 @@
 const String addressScreenTitle = 'Registered Address';
-const String addressScreenBody = 'Please enter information as written on your ID document.';
+const String addressScreenBody = 'Please enter information as written\non your ID document.';
 const String countryHint = 'Country';
 const String prefectureHint = 'Prefecture';
 const String municipalityHint = 'Municipality';
