@@ -25,7 +25,6 @@ class _AddressScreenState extends State<AddressScreen> {
           title: const Text(addressScreenTitle),
         ),
         body: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             LinearPercentIndicator(
@@ -52,7 +51,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           ValidatedFormField(
                             initialValue: state.country.value,
                             hintText: countryHint,
-                            errorText: state.country.displayError != null ? 'Please enter a valid country' : null,
+                            errorText: state.country.displayError != null ? countryError : null,
                             onChanged: (value) {
                               context.read<AddressFormBloc>().add(CountryChanged(country: value));
                             },
@@ -60,7 +59,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           ValidatedFormField(
                             initialValue: state.prefecture.value,
                             hintText: prefectureHint,
-                            errorText: state.prefecture.displayError != null ? 'Please enter a valid prefecture' : null,
+                            errorText: state.prefecture.displayError != null ? prefectureError : null,
                             onChanged: (value) {
                               context.read<AddressFormBloc>().add(PrefectureChanged(prefecture: value));
                             },
@@ -68,8 +67,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           ValidatedFormField(
                             initialValue: state.municipality.value,
                             hintText: municipalityHint,
-                            errorText:
-                                state.municipality.displayError != null ? 'Please enter a valid municipality' : null,
+                            errorText: state.municipality.displayError != null ? municipalityError : null,
                             onChanged: (value) {
                               context.read<AddressFormBloc>().add(MunicipalityChanged(municipality: value));
                             },
@@ -77,9 +75,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           ValidatedFormField(
                             initialValue: state.streetAddress.value,
                             hintText: streetAddressHint,
-                            errorText: state.streetAddress.displayError != null
-                                ? 'Please enter a valid address in this format: subarea-block-house'
-                                : null,
+                            errorText: state.streetAddress.displayError != null ? streetAddressError : null,
                             onChanged: (value) {
                               context.read<AddressFormBloc>().add(StreetAddressChanged(streetAddress: value));
                             },
@@ -87,8 +83,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           ValidatedFormField(
                             initialValue: state.apartment.value,
                             hintText: apartmentHint,
-                            errorText:
-                                state.apartment.displayError != null ? 'Please enter a valid apartment number' : null,
+                            errorText: state.apartment.displayError != null ? apartmentError : null,
                             onChanged: (value) {
                               context.read<AddressFormBloc>().add(ApartmentChanged(apartment: value));
                             },
