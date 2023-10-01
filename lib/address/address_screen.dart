@@ -1,4 +1,3 @@
-import 'package:easy_autocomplete/easy_autocomplete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterassignment/address/bloc/address_form_bloc.dart';
@@ -54,7 +53,7 @@ class _AddressScreenState extends State<AddressScreen> {
                               padding: EdgeInsets.symmetric(vertical: 30),
                               child: Text(addressScreenBody),
                             ),
-                            const CountryTextField(),
+                            CountryTextField(),
                             ValidatedFormField(
                               initialValue: state.prefecture.value,
                               hintText: prefectureHint,

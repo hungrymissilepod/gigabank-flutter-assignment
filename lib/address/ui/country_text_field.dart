@@ -3,27 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterassignment/address/bloc/address_form_bloc.dart';
 import 'package:flutterassignment/strings.dart';
+import 'package:countries_utils/countries_utils.dart';
 
 class CountryTextField extends StatelessWidget {
-  const CountryTextField({super.key});
+  CountryTextField({super.key});
+
+  final List<Country> countries = Countries.all();
+
+  String _getFlagForCountry(String country) {
+    int index = countries.indexWhere((element) => element.name == country);
+    if (index != -1) {
+      return countries[index].flagIcon ?? '';
+    }
+    return '';
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddressFormBloc, AddressFormState>(
       builder: (context, state) {
         return EasyAutocomplete(
-          suggestions: <String>[
-            'Afeganistan',
-            'Albania',
-            'Algeria',
-            'Australia',
-            'Brazil',
-            'German',
-            'Madagascar',
-            'Mozambique',
-            'Portugal',
-            'Zambia'
-          ],
+          suggestions: countries.map((e) => e.name!).toList(),
           initialValue: state.country.value,
           onChanged: (value) {
             context.read<AddressFormBloc>().add(CountryChanged(country: value));
@@ -48,12 +48,19 @@ class CountryTextField extends StatelessWidget {
               margin: const EdgeInsets.all(1),
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: Colors.purple,
+                // color: Colors.purple,
                 borderRadius: BorderRadius.circular(5),
               ),
-              child: Text(
-                data,
-                style: const TextStyle(color: Colors.white),
+              child: Row(
+                children: <Widget>[
+                  Flexible(child: Text(_getFlagForCountry(data))),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Text(
+                      data,
+                    ),
+                  )
+                ],
               ),
             );
           },
