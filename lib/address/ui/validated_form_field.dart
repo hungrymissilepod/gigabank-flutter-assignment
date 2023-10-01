@@ -5,14 +5,12 @@ import 'package:flutterassignment/address/bloc/address_form_bloc.dart';
 class ValidatedFormField extends StatelessWidget {
   const ValidatedFormField({
     super.key,
-    required this.focusNode,
     required this.initialValue,
     required this.hintText,
     required this.errorText,
     required this.onChanged,
   });
 
-  final FocusNode focusNode;
   final String? initialValue;
   final String? hintText;
   final String? errorText;
@@ -24,10 +22,15 @@ class ValidatedFormField extends StatelessWidget {
       builder: (context, state) {
         return TextFormField(
           initialValue: initialValue,
-          focusNode: focusNode,
           decoration: InputDecoration(
             hintText: hintText,
             errorText: errorText,
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.tertiary,
+                width: 2,
+              ),
+            ),
           ),
           textInputAction: TextInputAction.next,
           onChanged: onChanged,
