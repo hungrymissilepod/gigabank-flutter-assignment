@@ -20,20 +20,25 @@ class ValidatedFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AddressFormBloc, AddressFormState>(
       builder: (context, state) {
-        return TextFormField(
-          initialValue: initialValue,
-          decoration: InputDecoration(
-            hintText: hintText,
-            errorText: errorText,
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.tertiary,
-                width: 2,
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: TextFormField(
+            initialValue: initialValue,
+            decoration: InputDecoration(
+              hintText: hintText,
+              errorText: errorText,
+              hintStyle: const TextStyle(fontSize: 18),
+              labelStyle: const TextStyle(fontSize: 18),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.tertiary,
+                  width: 2,
+                ),
               ),
             ),
+            textInputAction: TextInputAction.next,
+            onChanged: onChanged,
           ),
-          textInputAction: TextInputAction.next,
-          onChanged: onChanged,
         );
       },
     );
